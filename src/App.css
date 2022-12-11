@@ -1,0 +1,11 @@
+.menudiv{
+    width: 15%;
+    height: 1000px;
+    background-color: rgb(229, 225, 251);
+    float: left;
+}
+.componentdiv{
+    width: 85%;
+    height: 1000px;
+    float: right;
+}
