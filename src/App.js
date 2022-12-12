@@ -1,29 +1,35 @@
 import React from 'react';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu } from 'antd';
 
 const { Header, Content, Sider } = Layout;
+const navitems=[
+  {icon:NotificationOutlined,name:'GENERAL',drop:['Pictures','Standards','TagSetup','UoM','Equipments']},
+  {icon:LaptopOutlined,name:'PLANT',drop:['db1','db2','db3']},
+  {icon:UserOutlined,name:'USER',drop:['Security','Shift']}
+               ]           
 
 const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
   key,
   label: `nav ${key}`,
 }));
 
-const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
+const items2: MenuProps['items'] = navitems.map(
+  (sub , index) => {
+    console.log(sub.icon);
     const key = String(index + 1);
 
     return {
       key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
+      icon: React.createElement(sub.icon),
+      label: `${sub.name}`,
 
-      children: new Array(4).fill(null).map((_, j) => {
+      children: sub.drop.map((name, j) => {
         const subKey = index * 4 + j + 1;
         return {
           key: subKey,
-          label: `option${subKey}`,
+          label: `${name}`,
         };
       }),
     };
